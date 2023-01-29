@@ -14,4 +14,10 @@ pub fn run(){
 
     /// Named Argument
     println!("print a single argument Value = {id} {number}", number=1, id=123);
+
+    /// placeholder traits
+    println!("Binary: {:b}, Hex: {:x}, Octal {:o} ", 16,16,16);
+
+    /// Placeholder for Debug trait
+    println!("{:?}",(13,true,"Hello"));
 }

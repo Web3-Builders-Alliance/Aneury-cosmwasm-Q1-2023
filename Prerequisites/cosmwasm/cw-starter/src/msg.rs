@@ -10,7 +10,22 @@ pub struct InstantiateMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum ExecuteMsg {
-    CustomMsg { val: String },
+    CreatePoll {
+        poll_id: String,
+        question: String,
+        options: Vec<String>,
+    },
+    Vote {
+        poll_id: String,
+        vote: String,
+    },
+    // DeletePoll{
+    //     poll_id: String
+    // },
+    // RevokeVote{
+    //     ballot_id: String
+    // }
+
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]

@@ -46,7 +46,7 @@ pub fn reply(deps: DepsMut, env: Env, msg: Reply)->Result<Response, ContractErro
     ///
     match msg.id{
         CALLBACK_ID => {
-            STATE.save(deps.storage, ^&true)?;
+            STATE.save(deps.storage,  &true)?;
         },
         ANOTHER_CALLBACK_ID=>{
             ///Another Sa

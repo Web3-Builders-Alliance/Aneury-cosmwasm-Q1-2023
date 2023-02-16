@@ -18,7 +18,7 @@ const CALLBACK_ID: U64 = 1u64;
    Explanation about  Liquidity pool.
 
  */
- 
+
 
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn instantiate(

@@ -1,4 +1,118 @@
-# CosmWasm Starter Pack
+# Requirements For WBA Challenge
+
+Last week's challenge:
+
+Cluster 2 Challenge
+
+You need two actors, Sender and Receiver.
+
+The Sender:
+- Receives native tokens from anyone and forwards them to the Receiver.
+- Stores how much tokens have been received/forwarded, which can be returned in a Query.
+
+The Receiver:
+- Stores the received tokens until the owner of the contract claims them.
+- The owner can claim part of the tokens held by the Receiver, or all at once.
+
+Optional:
+- The Sender gets notified when the Receiver has transferred the funds.
+- The Sender gets notified when the Receiver funds have been claimed by its owner.
+
+Assume happy paths, though minor validations are expected. Pass any relevant information you need on the messages.
+
+Additional Resources:
+- cw-template: https://github.com/CosmWasm/cw-template
+- cw-storage-plus: https://github.com/CosmWasm/cw-storage-plus
+- cw-plus: https://github.com/CosmWasm/cw-plus
+
+# Cluster 2 challenge continuation:
+
+- Validate that the amount of tokens being sent in the transaction match the ones the execute message intents to deposit (given that you are passing an amount in the execute message)
+- Validate that the denom of the funds sent is uluna, considering we are gonna deploy this on terra.
+- Validate only 1 type of coin is being sent in the tx.
+- Create custom errors for those scenarios where things go wrong.
+
+- Create a query on the sender to check how many tokens have been received/forwarded
+- Create a query on the receiver to check if the tokens have been claimed by the owner
+
+- Deploy to pisco-1, terra's testnet. Here's the information you need to achieve that:
+
+```sh
+  export CHAIN_ID="pisco-1"
+  export DENOM="uluna"
+  export BINARY="terrad"
+  export RPC="https://terra-testnet-rpc.polkachu.com:443"
+  export TXFLAG="--node $RPC --chain-id $CHAIN_ID --gas-prices 0.25$DENOM --gas auto --gas-adjustment 1.3 -y -b block --output json"
+```
+- Use terrad to interact with your contract(s), send queries and so on.
+
+You need this to create the optimized wasm to deploy on chain:
+
+```sh
+docker run --rm -v "$(pwd)":/code \
+--mount type=volume,source="$(basename "$(pwd)")_cache",target=/code/target \
+--mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
+cosmwasm/rust-optimizer:0.12.11
+```
+
+# Install Terrad
+first install golang, just in case you don't have it installed.
+
+```sh
+git clone https://github.com/terra-money/core
+cd core
+git checkout [latest version]
+make install
+```
+
+# Test Terra
+```sh
+terrad version --long
+```
+in case that this command show error related to that this command is not installed.
+```
+export PATH=$PATH:$(go env GOPATH)/bin
+```
+
+
+# TerraFlags
+```sh
+export TXFLAG="--node $RPC --chain-id $CHAIN_ID --gas-prices 0.25$DENOM --gas auto --gas-adjustment 1.3 -y -b block --output json"
+```
+
+# Common Command for Terrad
+```sh
+terrad tx
+terrad tx wasm
+terrad query
+
+```
+
+### using some explantion from Javier class
+
+```sh
+export CHAIN_ID="pisco-1"
+export DENOM="uluna"
+export BINARY="terrad"
+export RPC="https://terra-testnet-rpc.polkachu.com:443"
+export TXFLAG="--node $RPC --chain-id $CHAIN_ID --gas-prices 0.25$DENOM --gas auto --gas-adjustment 1.3 -y -b block --output json"
+$BINARY status --node $RPC
+```
+# Store contract
+```sh
+terrad tx wasm store artifact/wasm.prefixed --from <my_address> $TX_FLAGS
+...
+terrad tx wasm instantiate --from ...
+
+terrad tx wasm store wasm/file/path]
+```
+
+
+```sh
+https://terrasco.pe/testnet/address/terra1s0df8dfdpve2vr2hg5p2dw9dqfmyct4klr4jspdhjew6ahyaddmst6df94
+```
+
+# Main CosmWasm Starter Pack
 
 This is a template to build smart contracts in Rust to run inside a
 [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) module on all chains that enable it.
@@ -97,3 +211,6 @@ that have been published.
 Please replace this README file with information about your specific project. You can keep
 the `Developing.md` and `Publishing.md` files as useful referenced, but please set some
 proper description in the README.
+
+
+

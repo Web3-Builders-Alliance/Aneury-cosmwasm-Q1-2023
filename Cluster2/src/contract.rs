@@ -14,6 +14,11 @@ const CONTRACT_VERSION: &str = env!("CARGO_PKG_VERSION");
 const CALLBACK_ID: U64 = 1u64;
 
 
+/*
+   Explanation about  Liquidity pool.
+
+ */
+ 
 
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn instantiate(
@@ -22,6 +27,7 @@ pub fn instantiate(
     info: MessageInfo,
     msg: InstantiateMsg,
 ) -> Result<Response, ContractError> {
+
 
 
      let state = State {

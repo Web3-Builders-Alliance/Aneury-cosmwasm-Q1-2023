@@ -41,13 +41,22 @@ pub fn execute(
      unmpliemented!()
 }
 
-pub mod execute {
-    use super::*;
+#[cfg_attr(not(feature = "library"), entry_point)]
+pub fn migrate(deps: DepsMut, _env: Env, _msg: InstantiateMsg) -> Result<Response, ContractError> {
+    
+    let version: Version = CONTRACT_VERSION.parse()?;
+    
+    let storage_version: Version = get_contract_version(deps.storage)?.version.parse()?;
 
-   
+    if storage_version < version {
+        set_contract_version(deps.storage, CONTRACT_NAME, CONTRACT_VERSION)?;
+    }
+
+    /// OK()
+    Ok(Response::default())
 }
 
-#[entry_point]
+#[cfg_attr(not(feature = "library"), entry_point)]
 pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
     unmpliemented!()
 }

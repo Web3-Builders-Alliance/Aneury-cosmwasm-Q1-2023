@@ -34,6 +34,11 @@ pub enum QueryMsg {
    #[returns(GetReportOfRewardOffered)]
    GetReportOfRewards{},
 
+   #[returns(GetCurrentRewardBalance)]
+   GetBalanceReward{},
+
+
+
 
 }
 
@@ -48,3 +53,9 @@ pub enum QueryMsg {
 pub struct GetReportOfRewardOffered{
   // todo: Add metadata to share in reports?
 }
+
+#[cw_serde]
+pub struct GetCurrentRewardBalance{
+  // todo: Add metadata to share in reports?
+}
+

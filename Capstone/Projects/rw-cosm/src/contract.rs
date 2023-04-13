@@ -38,7 +38,7 @@ pub fn execute(
     info: MessageInfo,
     msg: ExecuteMsg,
 ) -> Result<Response, ContractError> {
-     unmpliemented!()
+     //unmpliemented!()
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
@@ -88,7 +88,25 @@ mod tests {
       ///  let res = query(deps.as_ref(), mock_env(), QueryMsg::GetCount {}).unwrap();
       ///  let value: GetCountResponse = from_binary(&res).unwrap();
         assert_eq!(17, value.count);
-    }
+    }  
 
-   
+
+
+
+
+
+
+    #[test]
+    pub fn test_query_balance(){
+
+    } 
+
+    #[test]
+    pub fn test_query_report(){
+
+    } 
+
+
+
+
 }

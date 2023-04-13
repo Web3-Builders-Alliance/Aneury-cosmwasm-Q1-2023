@@ -107,6 +107,32 @@ mod tests {
     } 
 
 
+    //CreateCampaign 
+    #[test]
+    pub fn test_create_valid_campaign(){}
+    pub fn test_create_invalid_campaign(){}
+    pub fn test_create_existing_campaign(){}
+  
+    //StopRewardCampaign 
+    pub fn test_stop_valid_campaign(){}
+    pub fn test_stop_invalid_campaign(){}
+    pub fn test_stop_non_existing_campaign(){}
+    
+    //DelegateRewardCampaign 
+    pub fn test_delegate_valid_campaign(){}
+    pub fn test_delegate_invalid_campaign(){}
+    pub fn test_delegate_non_existing_campaign(){}
+   
+   
+    ///BurnRewardToken 
+    /// ??? Todo y
+    ///GiveReward 
+    pub fn test_give_valid_reward(){}
+    pub fn test_give_delegate_valid_reward(){}
+    pub fn test_give_non_valid_reward_points(){}
+   
+   
+    //TradeReward 
 
 
 }
